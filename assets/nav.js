@@ -1,4 +1,5 @@
 const settings = require('electron-settings')
+const nr = require('./nr')
 
 document.body.addEventListener('click', function (event) {
   if (event.target.dataset.section) {
