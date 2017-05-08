@@ -17,6 +17,9 @@ function handleSectionTrigger (event) {
   // Highlight clicked button and show view
   event.target.classList.add('is-selected')
 
+  // Change url
+  window.location.hash = event.target.dataset.section
+
   // Display the current section
   const sectionId = event.target.dataset.section + '-section'
   document.getElementById(sectionId).classList.add('is-shown')
