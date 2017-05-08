@@ -1,6 +1,8 @@
 const settings = require('electron-settings')
 const nr = require('./nr')
 
+window.newrelic.setPageViewName('electronApiDemos')
+
 document.body.addEventListener('click', function (event) {
   if (event.target.dataset.section) {
     handleSectionTrigger(event)
@@ -13,12 +15,16 @@ document.body.addEventListener('click', function (event) {
 
 function handleSectionTrigger (event) {
   hideAllSectionsAndDeselectButtons()
+  const name = event.target.dataset.section
 
   // Highlight clicked button and show view
   event.target.classList.add('is-selected')
 
   // Change url
-  window.location.hash = event.target.dataset.section
+  window.location.hash = name
+
+  // Report interaction name
+  newrelic.interaction().setName(name)
 
   // Display the current section
   const sectionId = event.target.dataset.section + '-section'
